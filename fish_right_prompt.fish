@@ -45,14 +45,16 @@ function prompt_vi_mode -d 'vi mode status indicator'
       case default
         right_prompt_segment green black "N"
       case insert
-        right_prompt_segment blue black "I"
+#        right_prompt_segment blue black "I"
+        right_prompt_segment normal normal ""
       case visual
         right_prompt_segment red black "V"
     end
 end
 
 function fish_right_prompt -d 'Prints right prompt'
-  if set -q __fish_vi_mode
+  if test $__fish_active_key_bindings = 'fish_vi_key_bindings'
+#  if set -q __fish_vi_mode
     set -l first_color black
     set_color $first_color
     echo "$right_segment_separator"
